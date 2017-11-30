@@ -1,0 +1,29 @@
+<div class="alert alert-success alert-dismissible" role="alert" ng-show="shop.newShopWasCreated">
+  <strong>New shop was created!<strong>
+  <button type="button" class="close" ng-click="shop.cancelAlert()" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="container shop-container">
+    <div class="col-md-4 col-sm-12 shop-container-item" ng-repeat="item in shop.shops track by $index">
+        <div class="shop-container-item-header">
+            {{ item.id }}
+        </div>
+        <div class="shop-container-item-body">
+            <div class="shop-container-item-body-name">
+                {{ item.name }}
+            </div>
+            <div class="shop-container-item-body-address">
+                {{ item.address }}
+            </div>
+            <div class="shop-container-item-body-time">
+                <span>{{ item.time_open }}</span> - <span>{{ item.time_close }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+  <shop-creator shops="shop.shops"></shop-creator>
+</div>

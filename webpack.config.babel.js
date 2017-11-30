@@ -8,7 +8,9 @@ const scriptsPath = path.resolve(appPath, 'scripts');
 const stylesPath = path.resolve(appPath, 'styles');
 const nodePath = path.resolve(appPath, 'node_modules');
 
-const scriptsRoot = path.resolve(scriptsPath, 'app');
+const distPath = path.resolve(__dirname, 'dist');
+
+const scriptsRoot = path.resolve(scriptsPath, 'app', 'index.js');
 const stylesRoot = path.resolve(stylesPath, 'index.scss');
 
 const loaders = [
@@ -23,6 +25,7 @@ const loaders = [
         }
     }, {
         test: /\.(sass|scss)$/,
+        exclude: [nodePath],
         include: [
             nodePath, stylesPath
         ],
@@ -41,6 +44,7 @@ const loaders = [
         })
     }, {
         test: /\.css$/,
+        exclude: [nodePath],
         include: [
             nodePath, stylesPath
         ],
@@ -60,16 +64,16 @@ export default function() {
             scriptsRoot, stylesRoot
         ],
         output: {
-            path: path.resolve(__dirname, './dist'),
+            path: distPath,
             filename: 'bundle.js'
         },
         resolve: {
             extensions: ['.js', '.scss', '.css']
         },
-        devtool: 'source-map',
         watch: true,
+        devtool: 'source-map',
         devServer: {
-            contentBase: path.resolve(__dirname, './dist'),
+            contentBase: path.resolve(__dirname),
             compress: true,
             port: 3000
         },
@@ -81,9 +85,14 @@ export default function() {
                 {
                     from: './static/images/',
                     to: './images/'
+                },
+                {
+                    from: './src/index.html',
+                    to: 'index.html'
                 }
             ]),
-            new ExtractTextPlugin('style.css')
+            new ExtractTextPlugin('style.css'),
+            // new webpack.optimize.UglifyJsPlugin()
         ]
     };
     return config;

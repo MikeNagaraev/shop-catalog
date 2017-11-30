@@ -1,0 +1,23 @@
+{
+    "shops": [{
+        "id": 1,
+        "name": "Almi",
+        "address": "pr Dzerzhnskogo 95",
+        "time_open": "8:00",
+        "time_close": "21:00"
+    },
+    {
+        "id": 2,
+        "name": "Europt",
+        "address": "pr Zhukava 15",
+        "time_open": "9:00",
+        "time_close": "20:00"
+    },
+    {
+        "id": 3,
+        "name": "Magazin",
+        "address": "st. Osipova 12",
+        "time_open": "8:00",
+        "time_close": "22:00"
+    }]
+}
